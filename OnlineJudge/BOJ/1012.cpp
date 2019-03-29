@@ -20,15 +20,8 @@ void pro()
     for(i=1 ; i<=k ; i++)
         scanf("%d %d", &x, &y), a[x][y] = 1;
 
-    // for(i=0 ; i<n ; i++)
-    // {
-    //     for(j=0 ; j<m ; j++)
-    //         printf("%d ", a[i][j]);
-    //     printf("\n");
-    // }
-        
-    for(i=0 ; i<=n ; i++)
-        for(j=0 ; j<=m ; j++)
+    for(i=0 ; i<n ; i++)
+        for(j=0 ; j<m ; j++)
             if(a[i][j] == 1)
             {
                 cnt++;
@@ -60,8 +53,6 @@ int main()
     int i, n;
 
     scanf("%d", &n);
-    while(n--)
-    {
+    for(i=1 ; i<=n ; i++)
         pro();
-    }
 }

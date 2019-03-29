@@ -2,6 +2,8 @@
 
 int main()
 {
-    printf("hi");
-    return 0;
+    int a;
+
+    scanf("%x", &a);
+    printf("%x", a/4096);
 }
