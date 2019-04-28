@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <algorithm>
-#define INF 2000000000
-#define MAX 1001
+#define INF 10000000
+#define MAX 201
 using namespace std;
 
 int n, a[MAX], d[MAX], cnt, mx;
@@ -23,5 +23,5 @@ int main()
             mx = k;
         d[k] = a[i];
     }
-    printf("%d", mx);
+    printf("%d", n-mx);
 }

@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <algorithm>
-#define INF 2000000000
-#define MAX 1001
+#define INF 10000000
 using namespace std;
 
-int n, a[MAX], d[MAX], cnt, mx;
+int n, a[100001], d[100001], cnt, mx;
 
 int main()
 {
@@ -13,10 +12,11 @@ int main()
     scanf("%d", &n);
     for(i=1 ; i<=n ; i++)
         d[i] = INF;
+    for(i=n ; i>=1 ; i--)
+        scanf("%d", &a[i]);
 
     for(i=1 ; i<=n ; i++)
     {
-        scanf("%d", &a[i]);
         k = lower_bound(d+1, d+cnt+1, a[i])-d;
         cnt++;
         if(k>mx)

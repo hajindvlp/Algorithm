@@ -4,6 +4,7 @@
 #define MAX 1001
 using namespace std;
 
+pair<int, int> p[MAX];
 int n, a[MAX], d[MAX], cnt, mx;
 
 int main()
@@ -13,15 +14,19 @@ int main()
     scanf("%d", &n);
     for(i=1 ; i<=n ; i++)
         d[i] = INF;
+    for(i=1 ; i<=n ; i++)
+        scanf("%d %d", &p[i].first, &p[i].second);
+    sort(p+1, p+n+1);
+    for(i=1 ; i<=n ; i++)
+        a[i] = p[i].second;
 
     for(i=1 ; i<=n ; i++)
     {
-        scanf("%d", &a[i]);
         k = lower_bound(d+1, d+cnt+1, a[i])-d;
         cnt++;
         if(k>mx)
             mx = k;
         d[k] = a[i];
     }
-    printf("%d", mx);
+    printf("%d", n-mx);
 }

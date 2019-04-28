@@ -4,15 +4,13 @@ using namespace std;
 
 vector<int> v;
 int n, cnt = 1, zcnt;
-bool d[5000001];
+int d[5000001];
 
-void pro()
+int main()
 {
     int mod = 7, i;
 
-    v.erase(v.begin(), v.end());
-    for(i=0 ; i<=5000000 ; i++)
-        d[i] = false;
+    scanf("%d", &n);
 
     v.push_back(mod);
     mod = mod%n;
@@ -28,11 +26,5 @@ void pro()
     int len = v.size();
     for(i=0 ; i<len ; i++)
         printf("%d", v[i]);
-    printf("\n");
-}
-
-int main()
-{
-    while(1)
-        n++, pro();
+    return 0;
 }
