@@ -10,7 +10,7 @@ int main()
 {
     int i, j;
 
-    scanf("%d", &n);
+    scanf("%d %d", &n, &m);
 
     for(i=1 ; i<=n ; i++)
         d[i] = INF;
@@ -31,4 +31,5 @@ int main()
             if(a[v][j]!=0 && d[j]>a[v][j])
                 d[j] = a[v][j];
     }
+    printf("%d", sum);
 }

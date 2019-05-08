@@ -1,38 +1,27 @@
 #include <stdio.h>
-#include <vector>
-using namespace std;
-
-vector<int> v;
-int n, cnt = 1, zcnt;
-bool d[5000001];
-
-void pro()
-{
-    int mod = 7, i;
-
-    v.erase(v.begin(), v.end());
-    for(i=0 ; i<=5000000 ; i++)
-        d[i] = false;
-
-    v.push_back(mod);
-    mod = mod%n;
-    while(1)
-    {
-        if(mod == 0)
-            break;
-        else if(d[(mod*10+7)%n])
-            d[(mod*10+7)%n] = 0, mod = (mod*10)%n, v.push_back(0);
-        else
-            mod = (mod*10+7)%n, v.push_back(7), d[mod] = 1;
-    }
-    int len = v.size();
-    for(i=0 ; i<len ; i++)
-        printf("%d", v[i]);
-    printf("\n");
-}
 
 int main()
 {
-    while(1)
-        n++, pro();
+    int a, b;
+    int i, j;
+
+
+    scanf("%d %d", &a, &b);
+
+    for(i=1 ; i<=(a>0)?(a/2):(-a/2+1) ; i++)
+    {
+        for(j=1 ; j<=(a>0)?(i-1):(-a/2-i+1) ; j++)
+            printf(" ");
+        for(j=1 ; j<=b ; j++)
+            printf("*");
+        printf("\n");
+    }
+    for(i=1 ; i<=(a>0)?(a/2+1):(-a/2) ; i++)
+    {
+        for(j=1 ; j<=(a>0)?(a/2-i+1):(i) ; j++)
+            printf(" ");
+        for(j=1 ; j<=b;  j++)
+            printf("*");
+        printf("\n");
+    }
 }

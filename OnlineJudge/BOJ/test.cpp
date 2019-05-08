@@ -2,8 +2,20 @@
 
 int main()
 {
-    int a;
+    int a, b, cnt = 0;
+    int i;
 
-    scanf("%x", &a);
-    printf("%x", a/4096);
+    scanf("%d %d", &a, &b);
+    for(i=a ; i<=b ; i++)
+    {
+        int tmp = i;
+        while(1)
+        {
+            if(tmp%2 == 1)
+                break;
+            cnt++;
+            tmp/=2;
+        }
+    }
+    printf("%d", cnt);
 }
