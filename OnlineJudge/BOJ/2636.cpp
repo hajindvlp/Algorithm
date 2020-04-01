@@ -4,8 +4,9 @@ using namespace std;
 
 queue<int> Q;
 int n, m, cnt, asum, tsum;
-int a[101][101], d[101][101];
+int a[105][105], d[105][105];
 int dy[4]={0, 1, 0, -1}, dx[4]={1, 0, -1, 0};
+int sx, sy;
 
 bool check()
 {
@@ -28,13 +29,12 @@ int main()
 {
     int i, j, k;
     int yy, xx, ty, tx;
-    int sum;
 
     scanf("%d %d", &n, &m);
     for(i=1 ; i<=n ; i++)
         for(j=1 ; j<=m ; j++)
             scanf("%d", &a[i][j]);
-
+    sx = sy = 1;
     while(check())
     {
         cnt++;
@@ -42,8 +42,8 @@ int main()
             for(j=1 ; j<=m ; j++)
                 d[i][j] = 0;
 
-        Q.push(1);
-        Q.push(1);
+        Q.push(sy);
+        Q.push(sx);
         while(!Q.empty())
         {
             yy = Q.front(), Q.pop();
@@ -57,6 +57,7 @@ int main()
                 {
                     Q.push(ty);
                     Q.push(tx);
+                    d[ty][tx] = 1;
                 }
             }
         }
@@ -67,6 +68,7 @@ int main()
                     for(k=0 ; k<4 ; k++)
                         if(i+dy[k]>0 && i+dy[k]<=n && j+dx[k]>0 && j+dx[k]<=m && d[i+dy[k]][j+dx[k]])
                         {
+                            sy = i, sx = j;
                             a[i][j] = 0;
                             break;
                         }
