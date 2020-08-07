@@ -1,3 +1,0 @@
-﻿  AlgorithmTest.cpp
-C:\Users\harry\Dev\Algorithm\AlgorithmTest\AlgorithmTest\AlgorithmTest.cpp(14,24): error C2065: 'scaf': undeclared identifier
-C:\Users\harry\Dev\Algorithm\AlgorithmTest\AlgorithmTest\AlgorithmTest.cpp(15,1): error C2143: syntax error: missing ';' before '}'
