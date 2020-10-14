@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
-#define INF 1000000000
+#define MAX_N 2505
 #define min(x, y) ((x)<(y)?(x):(y))
 #define max(x, y) ((x)>(y)?(x):(y))
 
-char t[2505], s[5010];
-int a[5010], d[5010];
-int n, mx;
+char t[MAX_N], s[2 * MAX_N];
+int a[2 * MAX_N], n, mx;
+int visit[2 * MAX_N];
 
 int main() {
 	int i, j;
@@ -32,27 +32,11 @@ int main() {
 		}
 	}
 
-	for (i = 0; i < n; i++) printf("%d ", a[i]);
+	for (i = 0; i < n; i++) {
 
-	for (i = 0; i < n; i++) d[i] = INF;
-
-	d[0] = 1;
-	for (i = 1; i < n; i++) {
-		if (i % 2 == 0) {
-			for (j = 1; j <= a[i] / 2; j++) {
-
-			}
-				if (d[i / 2 - 1 + j] > d[i / 2 - j] + 1)
-					d[i / 2 - 1 + j] = d[i / 2 - j] + 1;
-		}
-		else {
-			for (j = 0; j <= a[i] / 2; j++) {
-				if((i-1)/2 + j)
-			}
-				if (d[(i - 1) / 2 + j] > d[(i - 1) / 2 - j] + 1)
-					d[(i - 1) / 2 + j] > d[(i - 1) / 2 - j] + 1;
-		}
 	}
+
+	for (i = 0; i < n; i++) printf("%d ", a[i]);
 
 	for (i = 0; i < n; i++) mx = max(mx, a[i]);
 	printf("%d\n", mx);

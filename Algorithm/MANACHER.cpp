@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#define MAX_N 100005
 #define min(x, y) ((x)<(y)?(x):(y))
 #define max(x, y) ((x)>(y)?(x):(y))
 
-char t[100006], s[200006];
-int a[200006], n, mx;
+char t[MAX_N], s[2*MAX_N];
+int a[2*MAX_N], n, mx;
 
 int main() {
 	int i, j;

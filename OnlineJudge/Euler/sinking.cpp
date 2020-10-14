@@ -5,46 +5,41 @@
 #define INF 1000000000
 using namespace std;
 
-queue<int> Q;
+queue<pair<int, int> > Q;
 int n, m, l;
-int a[101][101], d[101][101], path[101][101];
+int a[101][101], d[101][101], path[101][101], ua[101][101];
 int dy[4] = {0, 1, 0, -1}, dx[4]={1, 0, -1, 0};
-int sy, sx, ey, ex, cnt;
-pair<int, int> v[10001];
+int sy, sx, ey, ex;
 
-bool bfs()
-{
-    bool ok = false;
-    int xx, yy, ty, tx;
+bool bfs() {
+    int yy, xx, ty, tx;
     int i;
 
-    cnt = 0, ok = false;
-    while(!Q.empty())
-    {
-        yy = Q.front(), Q.pop();
-        xx = Q.front(), Q.pop();
-        for(i=0 ; i<4 ; i++)
-        {
+    while(!Q.empty()) {
+        yy = Q.front().first;
+        xx = Q.front().second;
+        Q.pop();
+        for(i=0 ; i<4 ; i++) {
             ty = yy+dy[i];
             tx = xx+dx[i];
-            if(ty>0 && ty<=n && tx>0 && tx<=m && d[ty][tx]>d[yy][xx]+1 && a[ty][tx]!=-1)
-            {
+            if(ty>0 && ty<=n && tx>0 && tx<=m && a[ty][tx]!=-1 && d[yy][xx]<l && d[ty][tx] > d[yy][xx]+1) {
+                Q.push({ty, tx});
                 d[ty][tx] = d[yy][xx]+1;
                 path[ty][tx] = i;
-                if(d[ty][tx]%l == 0)
-                    v[++cnt] = make_pair(ty, tx);
-                Q.push(ty);
-                Q.push(tx);
             }
-            ok = true;
         }
     }
-    return ok;
+
+    if(d[ey][ex] != INF) {
+        return false;
+    }
+    return true;
 }
 
 int main()
 {
     int i ,j, k;
+    int yy, xx, ty, tx;
     char c[102];
 
     scanf("%d %d %d", &n, &m, &l);
@@ -54,7 +49,7 @@ int main()
         for(j=1 ; j<=m ; j++)
         {
             if(c[j] == 'Y')
-                sy = i, sx = j, Q.push(i), Q.push(j);
+                sy = i, sx = j;
             else if(c[j] == 'S')
                 ey = i, ex = j;
             else if(c[j] == 'F')
@@ -62,22 +57,33 @@ int main()
         }
     }
 
+    Q.push({sy, sx});
+    for(i=1 ; i<=n ; i++) for(j=1 ; j<=m ; j++) d[i][j] = INF;
     d[sy][sx] = 0;
 
-    for(i=1 ; i<=n ; i++)
-        for(j=1 ; j<=m ; j++)
-            d[i][j] = INF;
-
     while(bfs())
-    {
+    {   
         for(i=1 ; i<=n ; i++)
             for(j=1 ; j<=m ; j++)
                 if(a[i][j] == -1)
-                    for(k=0 ; k<4 ; k++)
-                        a[i+dy[k]][j+dx[k]] = -1;
-        for(i=1 ; i<=cnt ; i++)
-            if(a[v[i].first][v[i].second]!=-1)
-                Q.push(v[i].first), Q.push(v[i].second);
+                    for(k=0 ; k<4 ; k++) {
+                        ty = i+dy[k];
+                        tx = j+dx[k];
+                        if(ty>0 && ty<=n && tx>0 && tx<=m) ua[ty][tx] = -1;
+                    }
+        for(i=1 ; i<=n ; i++) for(j=1 ; j<=m ; j++) if(ua[i][j] == -1) a[i][j] = -1;
+
+        for(i=1 ; i<=n ; i++) for(j=1 ; j<=m ; j++) if(d[i][j] ==  && a[i][j] != -1) Q.push({i, j});
+
+        printf("\n%d\n", Q.size());
+        for(i=1;  i<=n ; i++) {
+            for(j=1 ; j<=m ; j++) printf("%2d ", d[i][j]==INF ? -1 : d[i][j]);
+            printf("\n");
+        }
+        for(i=1;  i<=n ; i++) {
+            for(j=1 ; j<=m ; j++) printf("%2d ", a[i][j]==-1 ? -1 : a[i][j]);
+            printf("\n");
+        }
     }
 
     printf("%d\n", d[ey][ex]);
