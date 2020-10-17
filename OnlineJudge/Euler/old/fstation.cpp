@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <queue>
+#include <iostream>
 #include <algorithm>
 #include <vector>
 #define INF 100000000
@@ -53,7 +54,7 @@ int main()
         scanf("%d", &x), check[x] = 1;
 
     a.resize(n+1);
-    for(i=1 ; i<=n ; i++)
+    while(!cin.eof()) 
         scanf("%d %d %d", &x, &y, &z), a[x].push_back(make_pair(z, y)), a[y].push_back(make_pair(z, x));
 
     for(i=1 ; i<=n ; i++)
