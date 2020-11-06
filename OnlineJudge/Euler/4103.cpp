@@ -2,46 +2,50 @@
 #include <string>
 using namespace std;
 
-int tree[260], N, M;
+int N;
 
-int sti(string s) {
-  int i, len = s.length();
-  int res = 1;
-  for(i=0 ; i<len ; i++) {
-    if(s[i] == 'L') res = res*2;
-    else if(s[i] == 'R') res = res*2+1;
-  }
+struct node {
+  int val;
+  node *l, *r;
+};
 
-  M = max(res, M);
-
-  return res;
-}
+node *root, *tmp;
 
 int main() {
-  cin.tie(NULL);
-  ios_base::sync_with_stdio(false);
-  int i, j, t;
-  bool flag = false;
+  int i, j;
+  int x;
+  bool flag = false, isRoot = false;
   string s;
 
   cin >> N;
   for(i=1 ; i<=N ; i++) {
-    if(flag) {
-      flag = false;
-      cin >> s;
-      tree[sti(s)] = t;
-    } else {
-      cin >> t >> s;
-      if(s[0]!='L' && s[0]!='R') {
-        tree[1] = t;
-        t = stoi(s);
-        flag = true;
+    if(i!=N) {
+      if(flag) {
+        x = stoi(s);
+        cin >> s;
+        flag = false;
+        isRoot = true;
       } else {
-        tree[sti(s)] = t;
+        cin >> x >> s;
+        if(s[0]!='L' || s[0]!='R') flag = true;
+      }
+    } else {
+      if(isRoot) cin >> x >> s;
+      else cin >> x;
+    }
+
+    int len = s.size();
+    tmp = root;
+    for(j=0 ; j<len ; j++) {
+      if(s[j] == 'L') {
+        if(tmp -> l == NULL) tmp -> l = new node;
+        cout << len;
+        tmp = tmp -> l;
+      } else {
+        if(tmp -> r == NULL) tmp -> r = new node;
+        tmp = tmp -> r;
       }
     }
+    tmp -> val = x;
   }
-
-  for(i=1 ; i<=M ; i++) 
-    if(tree[i] != 0) cout << tree[i] << " ";
 }
